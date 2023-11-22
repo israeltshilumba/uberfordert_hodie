@@ -1,12 +1,19 @@
 <template>
   <div id="app" class="">
-    <HelloWorld></HelloWorld>
+    <HeaderBar/>
+    <HoodieView/>
+    <BottomBar/>
   </div>
 </template>
 
 <script>
+import HeaderBar from "@/components/HeaderBar.vue";
+import HoodieView from "@/components/HoodieView.vue";
+import BottomBar from "@/components/BottomBar.vue";
+
 export default {
   name: 'App',
+  components: {BottomBar, HoodieView, HeaderBar},
 }
 </script>
 
