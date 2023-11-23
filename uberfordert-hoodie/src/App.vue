@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="">
     <HeaderBar/>
+    <ShoppingCart/>
     <HoodieList/>
     <BottomBar/>
   </div>
@@ -10,10 +11,11 @@
 import HeaderBar from "@/components/HeaderBar.vue";
 import BottomBar from "@/components/BottomBar.vue";
 import HoodieList from "@/components/HoodieList.vue";
+import ShoppingCart from "@/components/ShoppingCart.vue";
 
 export default {
   name: 'App',
-  components: {HoodieList, BottomBar, HeaderBar},
+  components: {ShoppingCart, HoodieList, BottomBar, HeaderBar},
 }
 </script>
 

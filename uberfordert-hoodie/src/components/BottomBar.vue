@@ -1,5 +1,5 @@
 <template>
-  <div>bottom bar</div>
+  <div class="bg-purple-400">bottom bar</div>
 </template>
 
 <script setup>
