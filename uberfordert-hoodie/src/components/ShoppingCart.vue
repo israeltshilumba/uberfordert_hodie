@@ -1,9 +1,12 @@
 <script setup>
   import {productsStore} from "@/store/products";
-
-  console.log("cart size:", productsStore().cart.length);
+  const useCartStore = productsStore().cart
 </script>
 
 <template>
-  <div>Cart</div>
+  <div>
+    <li v-for="cartItem in useCartStore" :key="cartItem.id">
+      <ul>{{cartItem.product.name}} {{cartItem.product.price}} {{cartItem.size}}</ul>
+    </li>
+  </div>
 </template>

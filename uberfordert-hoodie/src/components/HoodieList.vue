@@ -1,6 +1,5 @@
 <template>
   <div class="text-white bg-blue-600">
-    <p class="bg-red">test</p>
     <Swiper
         class="sm:w-full xl:w-1/2 border border-sky-500"
         ref="swiperRef"
@@ -15,7 +14,18 @@
         </div>
       </SwiperSlide>
     </Swiper>
-    <button @click="addToCart()">add product</button>
+    <div class="bg-red-200 text-black">select size</div>
+    <select
+        class="rounded-md flex-none text-sm"
+        name="size"
+        v-model="selectedSize"
+    >
+      <option class="text-inherit" value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+    </select>
+    <button @click="addToCart()">CHOOSE</button>
   </div>
 </template>
 
@@ -26,7 +36,8 @@ import {Swiper, SwiperSlide} from "swiper/vue"
 import "swiper/css";
 
 const useProductsStore = productsStore()
-const selectedItemIndex = ref(0);
+const selectedItemIndex = ref(null)
+const selectedSize = ref("M")
 
 onMounted(async() => {
   console.log("Mounted")
@@ -43,12 +54,24 @@ const onSwiper = (swiper) => {
 }
 
 const selectedProduct = computed( () => {
-  return useProductsStore.products.at(Number(selectedItemIndex))
+  console.log(useProductsStore.products.at(Number(selectedItemIndex.value)), "selectedProduct to CArt")
+  return useProductsStore.products.at(Number(selectedItemIndex.value))
 })
+
 const addToCart = () =>{
+  //Todo Error Handling
+  if(selectedSize.value == null) {
+    return
+  }
+  //Todo check if the size is even available
   console.log("Add to cart")
-  useProductsStore.addToCart(selectedProduct.value)
-  console.log(useProductsStore.cart)
+  const cartProduct = {
+    size: selectedSize.value,
+    product: selectedProduct.value
+  }
+  useProductsStore.addToCart(cartProduct)
+
+  console.log(cartProduct, "cart product")
 }
 
 </script>
