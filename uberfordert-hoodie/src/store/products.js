@@ -5,6 +5,7 @@ import jsonData from "@/products/products";
 export const productsStore = defineStore('products', {
     state: () => ({
         products: [],
+        cart: []
     }),
 
     actions: {
@@ -17,5 +18,8 @@ export const productsStore = defineStore('products', {
                 console.error('Error fetching products:', error);
             }
         },
+        addToCart(product) {
+            this.cart.push(product)
+        }
     },
 });

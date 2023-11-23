@@ -1,5 +1,5 @@
 <template>
-    <div>Top Bar Title</div>
+    <div class="bg-green-500">HEader</div>
 </template>
 
 <script setup>
