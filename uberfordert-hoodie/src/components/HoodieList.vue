@@ -6,7 +6,7 @@
         @slideChange="onSlideChange"
         @swiper="onSwiper"
     >
-      <SwiperSlide v-for="product in useProductsStore.products" :key="product.id">
+      <SwiperSlide v-for="product in productsStore().products" :key="product.id">
         <img :src="product.image" alt="no image"/>
         <div class="bg-amber-300">
           {{product.price}}
@@ -34,28 +34,23 @@ import {computed, onMounted, ref} from "vue"
 import {productsStore} from "@/store/products";
 import {Swiper, SwiperSlide} from "swiper/vue"
 import "swiper/css";
+import * as uuid from "uuid";
 
-const useProductsStore = productsStore()
 const selectedItemIndex = ref(null)
 const selectedSize = ref("M")
 
 onMounted(async() => {
-  console.log("Mounted")
-  await useProductsStore.fetchProducts()
-  console.log(useProductsStore.products)
+  await productsStore().fetchProducts()
 })
 const onSlideChange = (swiper) => {
-  console.log("slide changed", swiper.activeIndex)
   selectedItemIndex.value = swiper.activeIndex
 }
 const onSwiper = (swiper) => {
   selectedItemIndex.value = swiper.activeIndex
- console.log(swiper.activeIndex, "swiper init")
 }
 
 const selectedProduct = computed( () => {
-  console.log(useProductsStore.products.at(Number(selectedItemIndex.value)), "selectedProduct to CArt")
-  return useProductsStore.products.at(Number(selectedItemIndex.value))
+  return productsStore().products.at(Number(selectedItemIndex.value))
 })
 
 const addToCart = () =>{
@@ -64,14 +59,18 @@ const addToCart = () =>{
     return
   }
   //Todo check if the size is even available
-  console.log("Add to cart")
+  const price = selectedProduct.value.price
+  const info = selectedProduct.value.info
+  const image = selectedProduct.value.image
+
   const cartProduct = {
     size: selectedSize.value,
-    product: selectedProduct.value
+    id:  uuid.v4(),
+    price: price,
+    info: info,
+    image: image
   }
-  useProductsStore.addToCart(cartProduct)
-
-  console.log(cartProduct, "cart product")
+  productsStore().addToCart(cartProduct)
 }
 
 </script>

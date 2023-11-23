@@ -12,7 +12,6 @@ export const productsStore = defineStore('products', {
         async fetchProducts() {
             try {
                     this.products = jsonData;
-                    console.log("end of loading")
                 // Update the store with the fetched products
             } catch (error) {
                 console.error('Error fetching products:', error);
@@ -20,6 +19,15 @@ export const productsStore = defineStore('products', {
         },
         addToCart(product) {
             this.cart.push(product)
+        },
+        removeFromCart(item) {
+            try {
+                this.cart = this.cart.filter(
+                    (t) => t !== item
+                );
+            } catch (e) {
+                console.log(e)
+            }
         }
     },
 });
