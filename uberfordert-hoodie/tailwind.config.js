@@ -3,7 +3,11 @@ module.exports = {
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: true, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        BrunoAce: ['Bruno Ace', 'sans-serif'],
+      },
+    },
   },
   variants: {
     extend: {},

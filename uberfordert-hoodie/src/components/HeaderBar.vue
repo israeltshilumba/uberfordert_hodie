@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-green-500">HEader</div>
+    <h1 class="col-span-5 col-start-1 text-center text-4xl bold">HOODIE-SHOP</h1>
 </template>
 
 <script setup>

@@ -7,7 +7,6 @@ export const productsStore = defineStore('products', {
         products: [],
         cart: []
     }),
-
     actions: {
         async fetchProducts() {
             try {
