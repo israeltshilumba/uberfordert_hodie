@@ -31,8 +31,8 @@
         <option value="L">L</option>
       </select>
     </div>
-    <div class="grid grid-cols-5">
-      <button class="col-start-3 text-center" @click="addToCart()">CHOOSE</button>
+    <div class="grid grid-cols-5 pt-5">
+      <button class="col-start-3 text-center text-xs border border-white rounded-md p-1" @click="addToCart()">CHOOSE</button>
     </div>
   </div>
 </template>
@@ -85,7 +85,7 @@ const selectedProduct = computed( () => {
 })
 
 
-const addToCart = () =>{
+const addToCart = () => {
   //Todo Error Handling
   if(selectedSize.value == null) {
     return
@@ -105,5 +105,4 @@ const addToCart = () =>{
   }
   productsStore().addToCart(cartProduct)
 }
-
 </script>
