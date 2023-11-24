@@ -3,15 +3,15 @@
     <div class="flex flex-col min-h-screen">
       <!-- Main content area -->
       <div class="flex-1">
-        <div class="grid grid-cols-5 gap-y-8">
+        <div class="grid grid-cols-5 gap-y-8 p-2">
           <HeaderBar/>
           <ShoppingCart/>
           <HoodieList/>
         </div>
       </div>
-    </div>
-    <div class="row-start-2 ">
-      <BottomBar/>
+      <div class="">
+        <BottomBar/>
+      </div>
     </div>
   </div>
 </template>
